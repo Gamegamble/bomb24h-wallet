@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Javascript Screenshot Demo</title>
+
+    <!-- https://github.com/niklasvh/html2canvas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
+    <script>
+    function capture () {
+      html2canvas((document.getElementById("xxx")).then((canvas) => {
+        let a = document.createElement("a");
+        a.download = "ss.png";
+        a.href = canvas.toDataURL("image/png");
+        a.click(); // MAY NOT ALWAYS WORK!
+      });
+    }
+    </script>
+  </head>
+  <body>
+    <h1>TEST</h1>
+    <textarea>Dummy Text - Change and see how it captures below!</textarea>
+    <input type="button" value="Capture" onclick="capture()"/>
+  </body>
+</html>

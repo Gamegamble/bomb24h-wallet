@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h3>Create Input Box</h3>
+    <input type="text" id="myName" placeholder="วันที่" value="10 ส.ค. 65 10:10 น.">
+    <input type="text" id="myName2" placeholder="ชื่อผู้โอน" value="นายวินัย "><br>
+    <input type="text" id="myName3" placeholder="เลขบัญชี" value="xxx-x-x1234-x">
+    <input type="text" id="myName4" placeholder="ชื่อผู้รับ" value="ชื่อผู้รับ"><br>
+    <input type="text" id="myName5" placeholder="ธนาคาร" value="ธ.กรุงไทย">
+    <input type="text" id="myName6" placeholder="เลขบัญชี" value="xxx-x-x1234-x"><br>
+    <input type="text" id="myName7" placeholder="เลขทำรายการ" value="1234567892COR08765">
+    <input type="text" id="myName8" placeholder="จำนวนเงิน" value="100.00 บาท"><br>
+
+    
+
+    <h5>รูปธนาคาร</h5><input type="file" name="" onchange="document.getElementById('output').src=window.URL.createObjectURL(this.files[0])">
+    <h5>qr code</h5><input type="file" name="" onchange="document.getElementById('output2').src=window.URL.createObjectURL(this.files[0])">
+    
+    <button id="btn">แปลง</button>
+    <input type="button" value="บันทึก" onclick="capture()"/>
+    <br>
+    <br>
+   
+     <div class="container"  id="xxx">
+          <div class="a" id="demo"></div>
+          <div class="a2" id="demo2"></div>
+          <div class="a3" id="demo3"></div>
+          <div class="a4" id="demo4"></div>
+          <div class="a5" id="demo5"></div>
+          <div class="a6" id="demo6"></div>
+          <div class="a7" id="demo7"></div>
+          <div class="a8" >
+               <div class="aa" id="demo8"> </div>
+              
+          </div>
+          <img class="display" src="" id="output">
+          <img class="display2" src="" id="output2">
+        
+
+</div>
+
+               <!-- Btn to trigger action -->
+            
+
+    <script src="index.js"></script>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.4/html2canvas.min.js"></script>
+<script>
+function capture () {
+  html2canvas(document.getElementById("xxx")).then((canvas) => {
+    let a = document.createElement("a");
+    a.download = "ss.jpg";
+    a.href = canvas.toDataURL("image/png");
+    a.click(); // MAY NOT ALWAYS WORK!
+  });
+}
+</script>
+</html>

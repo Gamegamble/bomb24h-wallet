@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <label>Select multiple files to read from your system:</label>
+        <input type="file" id="fileinput" multiple />
+
+        <script>
+            /**
+             *  Simple JavaScript Promise that reads a file as text.
+             **/
+            function readFileAsText(file){
+                return new Promise(function(resolve,reject){
+                    let fr = new FileReader();
+
+                    fr.onload = function(){
+                        resolve(fr.result);
+                    };
+
+                    fr.onerror = function(){
+                        reject(fr);
+                    };
+
+                    fr.readAsText(file);
+                });
+            }
+
+            // Handle multiple fileuploads
+            document.getElementById("fileinput").addEventListener("change", function(ev){
+                let files = ev.currentTarget.files;
+                let readers = [];
+
+                // Abort if there were no files selected
+                if(!files.length) return;
+
+                // Store promises in array
+                for(let i = 0;i < files.length;i++){
+                    readers.push(readFileAsText(files[i]));
+                }
+                
+                // Trigger Promises
+                Promise.all(readers).then((values) => {
+                    // Values will be an array that contains an item
+                    // with the text of every selected file
+                    // ["File1 Content", "File2 Content" ... "FileN Content"]
+                    console.log(values);
+                });
+            }, false);
+        </script>
+    </body>
+</html>
